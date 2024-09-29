@@ -32,24 +32,24 @@ The scheduler chooses the process with the highest priority and simulates runnin
 import threading
 import time
 
-class Process(threading.Thread):
-    def __init__(self, id, burst_time, priority):
+    class Process(threading.Thread):
+     def __init__(self, id, burst_time, priority):
         super().__init__()
         self.id = id
         self.burst_time = burst_time
         self.priority = priority
         self.completed = False
 
-    def run(self):
+     def run(self):
         """Simulates the execution of the process."""
         time.sleep(self.burst_time)
         self.completed = True
         print(f"Process ID: {self.id} completed execution.")
 
-def schedule_processes(processes):
-    """Schedules and runs processes based on their priority."""
-    for p in processes:
-        p.start()
+    def schedule_processes(processes):
+        """Schedules and runs processes based on their priority."""
+        for p in processes:
+            p.start()
     
     while processes:
         # Select the process with the highest priority
@@ -57,19 +57,18 @@ def schedule_processes(processes):
         
         if p.completed:
             processes.remove(p)
-        else:
-            print(f"Running process ID: {p.id} (Priority: {p.priority})")
-            p.priority += 1  # Increase priority of the running process
-        time.sleep(1)  # Pause for a second before the next scheduling cycle
+            else:
+                print(f"Running process ID: {p.id} (Priority: {p.priority})")
+                p.priority += 1  # Increase priority of the running process
+            time.sleep(1)  # Pause for a second before the next scheduling cycle
 
 # Entry point to schedule processes
 if __name__ == "__main__":
     # Create a list of processes with varying burst times and priorities
-    process_list = [
-        Process(1, 4, 1),
+    process_list = 
+       [ Process(1, 4, 1),
         Process(2, 3, 2),
         Process(3, 2, 1)
-    ]
     schedule_processes(process_list)
 
 """
